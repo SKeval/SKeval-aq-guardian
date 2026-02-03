@@ -22,45 +22,6 @@
 
 ---
 
-## 🏗️ System Architecture
-
-┌─────────────────────────────────────────────────────────────────┐
-│ AQ-GUARDIAN ARCHITECTURE │
-└─────────────────────────────────────────────────────────────────┘
-
-┌──────────────┐
-│ OpenAQ API │ ← Chemnitz Sensor 11057 (PM10 data)
-│ Open-Meteo │ ← Weather API (temp, humidity, wind)
-└──────┬───────┘
-│
-▼
-┌──────────────────────┐
-│ Data Pipeline │
-│ (scripts/daily_*) │
-│ - ETL & Cleaning │
-│ - Feature Eng. │
-│ - Hourly Merge │
-└──────┬───────────────┘
-│
-▼
-┌──────────────────────┐
-│ XGBoost Model │
-│ - 12 features │
-│ - R² = 0.65 │
-│ - 24% > baseline │
-└──────┬───────────────┘
-│
-▼
-┌──────────────────────┐ ┌─────────────────────┐
-│ FastAPI Server │◄────────│ Streamlit UI │
-│ - /forecast │ │ - Weather inputs │
-│ - /health-advice │ │ - Predictions │
-│ - Swagger docs │ │ - RAG assistant │
-└──────────────────────┘ └─────────────────────┘
-
-
----
-
 ## 📊 Model Performance
 
 | Metric | Value | Comparison |
@@ -98,6 +59,9 @@ curl -X POST "http://localhost:8000/forecast" \
   "timestamp": "2026-02-03T15:00:00"
 }
 
+---
+
+
 ## 🩺 RAG Health Assistant
 Provides personalized advice based on WHO Air Quality Guidelines and EU Regulations:
 
@@ -114,7 +78,11 @@ WHO Air Quality Guidelines (2021)
 EU Air Quality Directive 2008/50/EC
 German Federal Environment Agency (UBA)
 
+---
+
+
 ## Requirements.txt
+
 ### Core ML & Data
 pandas==2.1.3
 numpy==1.24.3
@@ -140,43 +108,6 @@ matplotlib==3.8.2
 seaborn==0.13.0
 jupyter==1.0.0
 
-## .gitignore
-
-### Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-.venv
-
-### Jupyter
-.ipynb_checkpoints
-
-### IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-### Data (don't commit large files)
-data/raw/*.csv
-data/raw/*.json
-*.pkl
-
-### OS
-.DS_Store
-Thumbs.db
-
-### Environment
-.env
-.env.local
-
-### Logs
-*.log
 
 
 ## 📧 Contact
