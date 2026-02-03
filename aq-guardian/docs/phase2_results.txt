@@ -1,0 +1,30 @@
+Phase 2 Evaluation Summary
+============================================================
+
+Model: Linear Regression
+Target: PM10 1-hour ahead forecast
+Features: 12 (time, lag, rolling, weather)
+
+Dataset:
+  Total rows: 993
+  Train samples: 794
+  Test samples: 199
+  Date range: 2025-11-03 08:00:00 to 2025-12-22 13:00:00
+
+Test Set Performance:
+  RMSE: 4.81 µg/m³
+  MAE:  3.64 µg/m³
+  R²:   0.468
+
+Persistence Baseline:
+  RMSE: 5.29 µg/m³
+
+Model Improvement:
+  9.0% better than persistence baseline
+
+Files Generated:
+  - models/pm10_baseline_model.pkl
+  - data/processed/chemnitz_features.csv
+  - notebooks/phase2_predictions_vs_actual.png
+  - notebooks/phase2_residuals.png
+  - notebooks/phase2_scatter_pred_vs_actual.png
